@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PT from 'prop-types';
 import { getProducts } from 'ducks/products';
+import { logout } from 'ducks/user';
 import cssModules from 'react-css-modules';
+import { Button } from 'common';
 import _ from 'lodash/fp';
 
 class Dashboard extends React.Component {
@@ -11,11 +13,15 @@ class Dashboard extends React.Component {
         this.props.dispatch(getProducts());
     }
 
+    handleLogout = () => {
+        this.props.dispatch(logout());
+    }
+
     render() {
         return (
             <section>
                 Dashboard
-                {this.props.products.data}
+                <Button onClick={this.handleLogout}>Logout</Button>
             </section>
         );
     }
@@ -25,7 +31,7 @@ Dashboard.propTypes = {
 };
 
 const withHOCs = _.flowRight([
-    connect(({ products }) => ({ products })),
+    connect(({ products, user }) => ({ products, user })),
     cssModules(),
 ]);
 

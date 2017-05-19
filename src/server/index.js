@@ -1,5 +1,5 @@
 import store from 'app/store';
-import routes from 'app/routes';
+import getRoutes from 'app/routes';
 import express from 'express';
 import React from 'react';
 import path from 'path';
@@ -15,6 +15,7 @@ app.use(express.static(path.resolve(__dirname, '../../dist')));
 app.use(compress());
 
 app.use((req, res, next) => {
+    const routes = getRoutes();
     match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
         if (error) {
             return next(error);

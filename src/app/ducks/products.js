@@ -42,7 +42,8 @@ export const productsFailed = createAction(PRODUCTS_FAILED);
 export const getProducts = () => (dispatch) => {
     dispatch({ type: PRODUCTS_PENDING });
 
-    firebaseDatabase.ref('/Products').once('value').then((res) => {
+    firebaseDatabase.ref('/products').once('value').then((res) => {
+        console.log(res.val());
         dispatch(productsSuccess(res.val()));
     }).catch((err) => {
         const errorCode = err.code;

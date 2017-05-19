@@ -10,11 +10,15 @@ const LOGIN_PENDING = 'LOGIN_PENDING';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_FAILED = 'LOGIN_FAILED';
 
+const LOGOUT_PENDING = 'LOGOUT_PENDING';
+const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+const LOGOUT_FAILED = 'LOGOUT_FAILED';
+
 const initialState = {
     success: false,
     error: false,
     loading: false,
-    logged_in: false,
+    authenticated: false,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -29,10 +33,17 @@ export default (state = initialState, { type, payload }) => {
         return {
             ...state,
             loading: false,
-            logged_in: true,
+            authenticated: true,
+        };
+    case LOGOUT_SUCCESS:
+        return {
+            ...state,
+            loading: false,
+            authenticated: false,
         };
     case REGISTER_FAILED:
     case LOGIN_FAILED:
+    case LOGOUT_FAILED:
         return {
             ...state,
             error: true,
@@ -40,6 +51,7 @@ export default (state = initialState, { type, payload }) => {
         };
     case REGISTER_PENDING:
     case LOGIN_PENDING:
+    case LOGOUT_PENDING:
         return {
             ...state,
             loading: true,
@@ -81,6 +93,23 @@ export const login = () => (dispatch, getState) => {
     firebaseAuth.signInWithEmailAndPassword(email, password).then(() => {
         dispatch(loginSuccess());
         browserHistory.push('/');
+    }).catch((err) => {
+        const errorCode = err.code;
+        const errorMessage = err.message;
+
+        console.log(errorCode, errorMessage);
+    });
+};
+
+export const logoutSuccess = createAction(LOGOUT_SUCCESS);
+export const logoutFailed = createAction(LOGOUT_FAILED);
+
+export const logout = () => (dispatch) => {
+    dispatch({ type: LOGOUT_PENDING });
+
+    firebaseAuth.signOut().then(() => {
+        dispatch(logoutSuccess());
+        browserHistory.push('/login');
     }).catch((err) => {
         const errorCode = err.code;
         const errorMessage = err.message;
