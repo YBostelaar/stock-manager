@@ -39,7 +39,7 @@ export default (state = initialState, { type, payload }) => {
 export const productsSuccess = createAction(PRODUCTS_SUCCESS);
 export const productsFailed = createAction(PRODUCTS_FAILED);
 
-export const getProducts = () => (dispatch, getState) => {
+export const getProducts = () => (dispatch) => {
     dispatch({ type: PRODUCTS_PENDING });
 
     firebaseDatabase.ref('/Products').once('value').then((res) => {
