@@ -1,14 +1,22 @@
 import App from 'app/components/App';
-import { Test } from 'app/components/modules';
+import { Login, Register, Dashboard } from 'app/components/modules';
 
 export default [
     {
         component: App,
         childRoutes: [
             {
-                component: Test,
+                component: Dashboard,
                 path: '/',
             },
         ],
+    },
+    {
+        component: Login,
+        path: '/login',
+    },
+    {
+        component: Register,
+        path: '/register',
     },
 ];

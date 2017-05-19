@@ -1,1 +1,2 @@
-export test from './test';
+export user from './user';
+export products from './products';
