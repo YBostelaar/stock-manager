@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PT from 'prop-types';
 import cssModules from 'react-css-modules';
-import { LoginForm } from 'modules';
-import { register, login } from 'ducks/user';
+import { RegisterForm } from 'modules';
+import { register } from 'ducks/user';
 import _ from 'lodash/fp';
-import styles from './Login.css';
+import styles from '../Login/styles.css';
 
 const Login = props => (
     <section>
-        <LoginForm register={props.register} login={props.login} />
+        <RegisterForm register={props.register} />
     </section>
 );
 
@@ -17,7 +17,7 @@ Login.propTypes = {
 };
 
 const withHOCs = _.flowRight([
-    connect(({ user }) => ({ user }), { register, login }),
+    connect(({ user }) => ({ user }), { register }),
     cssModules(styles),
 ]);
 

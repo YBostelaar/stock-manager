@@ -1,8 +1,10 @@
 import React from 'react';
 import PT from 'prop-types';
+import { Header } from 'modules';
 
 const App = ({ children }) => (
     <main>
+        <Header />
         {children}
     </main>
 );

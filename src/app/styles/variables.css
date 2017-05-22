@@ -1,7 +1,7 @@
 :root {
     /* COLORS */
-    --c-primary: #2ecc71;
-    --c-text: #2F3F42;
+    --c-primary: #FFFFFF;
+    --c-background: #eceff1;
 
     /* FONTS */
     --f-futura: Futura-Medium, Futura;

@@ -1,0 +1,6 @@
+@import 'variables.css';
+
+.dashboard {
+    background-color: var(--c-background);
+    height: calc(100% - 48px);
+}

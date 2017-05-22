@@ -2,7 +2,7 @@ import App from 'app/components/App';
 import { Login, Register, Dashboard } from 'app/components/modules';
 import { browserHistory } from 'react-router';
 
-const requireAuth = store => (nextState) => {
+const requireAuth = store => () => {
     if (store && !store.getState().user.authenticated) {
         browserHistory.push('/login');
     }
@@ -32,23 +32,3 @@ const getRoutes = store => (
 );
 
 export default getRoutes;
-
-// export default [
-//     {
-//         component: App,
-//         childRoutes: [
-//             {
-//                 component: Dashboard,
-//                 path: '/',
-//             },
-//         ],
-//     },
-//     {
-//         component: Login,
-//         path: '/login',
-//     },
-//     {
-//         component: Register,
-//         path: '/register',
-//     },
-// ];
