@@ -1,0 +1,10 @@
+@import 'variables.css';
+
+.products {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.table {
+    background-color: var(--c-primary);
+}

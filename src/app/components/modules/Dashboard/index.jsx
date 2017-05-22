@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PT from 'prop-types';
 import { getProducts } from 'ducks/products';
+import { ProductsTable } from 'modules';
 import cssModules from 'react-css-modules';
 import _ from 'lodash/fp';
 import styles from './styles.css';
@@ -14,7 +15,8 @@ class Dashboard extends React.Component {
     render() {
         return (
             <section styleName="dashboard">
-                Dashboard
+                <h1 styleName="title">Producten</h1>
+                <ProductsTable />
             </section>
         );
     }

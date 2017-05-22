@@ -3,3 +3,7 @@
 body {
     margin: 0;
 }
+
+main > section {
+    margin: 49px 0 0 256px;;
+}

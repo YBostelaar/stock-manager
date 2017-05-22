@@ -1,11 +1,14 @@
 import React from 'react';
 import PT from 'prop-types';
-import { Header } from 'modules';
+import { Header, Sidebar } from 'modules';
 
 const App = ({ children }) => (
     <main>
         <Header />
-        {children}
+        <Sidebar />
+        <section>
+            {children}
+        </section>
     </main>
 );
 
